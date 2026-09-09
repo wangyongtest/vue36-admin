@@ -33,13 +33,24 @@ export const systemChildren: RouteRecordRaw[] = [
     },
   },
   {
-    path: 'system/menu',
-    name: 'SystemMenu',
-    component: () => import('@/presentation/views/system/menu/index.vue'),
+    path: 'system/dict',
+    name: 'SystemDict',
+    component: () => import('@/presentation/views/system/dict/index.vue'),
     meta: {
-      title: '菜单管理',
-      permissions: ['system:menu:list'],
-      icon: 'MenuOutlined',
+      title: '字典管理',
+      permissions: ['system:dict:list'],
+      icon: 'BookOutlined',
+    },
+  },
+  {
+    // 字典项维护页：不在菜单中直接入口，由字典管理页「字典项」按钮跳转
+    path: 'system/dict-item',
+    name: 'SystemDictItem',
+    component: () => import('@/presentation/views/system/dict/item/index.vue'),
+    meta: {
+      title: '字典项管理',
+      permissions: ['system:dict:list'],
+      icon: 'TagsOutlined',
     },
   },
 ]

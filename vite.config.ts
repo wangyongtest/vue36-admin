@@ -62,10 +62,26 @@ export default defineConfig(({ mode }) => {
       sourcemap: false,
       rollupOptions: {
         output: {
-          manualChunks: {
-            vue: ['vue', 'vue-router', 'pinia'],
-            antd: ['ant-design-vue', '@ant-design/icons-vue'],
-            utils: ['axios', '@vueuse/core', 'dayjs'],
+          /**
+           * Vite 8 使用 rolldown 作为打包内核，`manualChunks` 只接受函数形式，
+           * 对象形式会在构建期抛 "manualChunks is not a function"。
+           * 判定顺序：antd 必须排在 vue 之前，否则 ant-design-vue 会被 "/vue/" 误吞。
+           */
+          manualChunks(id: string) {
+            if (!id.includes('node_modules')) return undefined
+            if (id.includes('ant-design-vue') || id.includes('@ant-design/icons-vue')) return 'antd'
+            if (
+              id.includes('/vue/') ||
+              id.includes('vue-router') ||
+              id.includes('/pinia/') ||
+              id.includes('@vue/')
+            ) {
+              return 'vue'
+            }
+            if (id.includes('/axios/') || id.includes('@vueuse/') || id.includes('/dayjs/')) {
+              return 'utils'
+            }
+            return undefined
           },
         },
       },

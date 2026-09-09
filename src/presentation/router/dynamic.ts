@@ -24,6 +24,8 @@ const VIEW_MODULES: Record<string, () => Promise<unknown>> = {
   'system/role/index': () => import('@/presentation/views/system/role/index.vue'),
   'system/dept/index': () => import('@/presentation/views/system/dept/index.vue'),
   'system/menu/index': () => import('@/presentation/views/system/menu/index.vue'),
+  'system/dict/index': () => import('@/presentation/views/system/dict/index.vue'),
+  'system/dict/item/index': () => import('@/presentation/views/system/dict/item/index.vue'),
 }
 
 /** 菜单树节点（不继承 MenuEntity，避免 BaseEntity.equals 等实例方法在对象 spread 后缺失） */

@@ -42,3 +42,6 @@ vite.config.js.timestamp-*
 
 # TypeScript
 *.tsbuildinfo
+
+# 安装中断产生的临时依赖目录（如 node_modules.partial）
+node_modules.*/

@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import type { MenuProps } from 'ant-design-vue'
 import { useAppStore } from '@/stores/modules/app'
 import { useUserStore } from '@/stores/modules/user'
 
@@ -54,8 +55,9 @@ const menus = [
 
 const activeMenu = computed(() => route.path)
 
-function onMenuClick({ key }: { key: string }) {
-  router.push(key)
+// 显式对齐 antd 的 MenuProps['onClick'] 签名，避免自定义入参类型不匹配
+const onMenuClick: MenuProps['onClick'] = ({ key }) => {
+  router.push(key as string)
 }
 
 function onLayoutChange(e: any) {

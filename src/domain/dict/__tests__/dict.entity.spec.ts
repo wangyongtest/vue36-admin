@@ -27,6 +27,7 @@ describe('DictItemEntity', () => {
     expect(i.value).toBe('')
     expect(i.tagType).toBe('default')
     expect(i.sort).toBe(0)
+    expect(i.remark).toBe('')
     expect(i.status).toBe(StatusEnum.NORMAL)
   })
 

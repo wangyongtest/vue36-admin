@@ -16,4 +16,5 @@ export class DictItemEntity extends BaseEntity {
   tagType = 'default'
   sort = 0
   status: StatusEnum = StatusEnum.NORMAL
+  remark = ''
 }
